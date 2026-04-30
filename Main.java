@@ -11,14 +11,13 @@ class Student implements Exam {
     int marks;
     String grade;
 
-    // Use scanner from main
     public void conductExam(Scanner sc) {
         System.out.print("Enter Student Name: ");
         name = sc.nextLine();
 
         System.out.print("Enter Marks (out of 100): ");
         marks = sc.nextInt();
-        sc.nextLine(); // clear buffer
+        sc.nextLine(); 
     }
 
     public void evaluateMarks() {
@@ -48,12 +47,12 @@ public class Main {
 
         System.out.print("Enter number of students: ");
         int n = sc.nextInt();
-        sc.nextLine(); // clear buffer
+        sc.nextLine(); 
 
         for (int i = 0; i < n; i++) {
             System.out.println("\nEnter details for Student " + (i + 1));
             Student s = new Student();
-            s.conductExam(sc); // pass scanner
+            s.conductExam(sc); 
             students.add(s);
         }
 
@@ -62,6 +61,6 @@ public class Main {
             s.publishResult();
         }
 
-        sc.close(); // good practice
+        sc.close(); 
     }
 }

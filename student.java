@@ -12,7 +12,7 @@ public class Student implements Exam {
 
     DefaultTableModel model;
 
-    Student(
+    public Student(
             String name,
             int sub1,
             int sub2,

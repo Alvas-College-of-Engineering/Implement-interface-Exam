@@ -1,69 +1,15 @@
+// Main.java
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
-interface Exam {
-
-    void conductExam();
-
-    void evaluateMarks();
-
-    void publishResult();
-}
-
-class Student implements Exam {
-
-    String name;
-
-    int marks;
-
-    String grade;
-
-    DefaultTableModel model;
-
-    Student(String name, int marks, DefaultTableModel model) {
-
-        this.name = name;
-
-        this.marks = marks;
-
-        this.model = model;
-    }
-
-    public void conductExam() {
-
-        System.out.println("Exam Conducted for " + name);
-    }
-
-    public void evaluateMarks() {
-
-        if (marks >= 90)
-            grade = "A";
-
-        else if (marks >= 75)
-            grade = "B";
-
-        else if (marks >= 50)
-            grade = "C";
-
-        else
-            grade = "Fail";
-    }
-
-    public void publishResult() {
-
-        model.addRow(new Object[] {
-                name,
-                marks,
-                grade
-        });
-    }
-}
-
 public class Main extends JFrame implements ActionListener {
 
-    JTextField nameField, marksField;
+    JTextField nameField;
+
+    JTextField sub1Field, sub2Field, sub3Field;
 
     JButton submitButton;
 
@@ -75,7 +21,7 @@ public class Main extends JFrame implements ActionListener {
 
         setTitle("Examination Management System");
 
-        setSize(800, 500);
+        setSize(1000, 550);
 
         setLocationRelativeTo(null);
 
@@ -98,27 +44,37 @@ public class Main extends JFrame implements ActionListener {
 
         JLabel nameLabel = new JLabel("Student Name");
 
-        nameLabel.setFont(new Font("Arial", Font.BOLD, 15));
-
         inputPanel.add(nameLabel);
 
-        nameField = new JTextField(12);
+        nameField = new JTextField(10);
 
         inputPanel.add(nameField);
 
-        JLabel marksLabel = new JLabel("Marks");
+        JLabel sub1Label = new JLabel("Subject 1");
 
-        marksLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        inputPanel.add(sub1Label);
 
-        inputPanel.add(marksLabel);
+        sub1Field = new JTextField(5);
 
-        marksField = new JTextField(8);
+        inputPanel.add(sub1Field);
 
-        inputPanel.add(marksField);
+        JLabel sub2Label = new JLabel("Subject 2");
+
+        inputPanel.add(sub2Label);
+
+        sub2Field = new JTextField(5);
+
+        inputPanel.add(sub2Field);
+
+        JLabel sub3Label = new JLabel("Subject 3");
+
+        inputPanel.add(sub3Label);
+
+        sub3Field = new JTextField(5);
+
+        inputPanel.add(sub3Field);
 
         submitButton = new JButton("Submit");
-
-        submitButton.setFont(new Font("Arial", Font.BOLD, 14));
 
         inputPanel.add(submitButton);
 
@@ -128,7 +84,13 @@ public class Main extends JFrame implements ActionListener {
 
         model.addColumn("Student Name");
 
-        model.addColumn("Marks");
+        model.addColumn("Subject 1");
+
+        model.addColumn("Subject 2");
+
+        model.addColumn("Subject 3");
+
+        model.addColumn("Average");
 
         model.addColumn("Grade");
 
@@ -136,11 +98,9 @@ public class Main extends JFrame implements ActionListener {
 
         table.setRowHeight(25);
 
-        table.setFont(new Font("Arial", Font.PLAIN, 14));
-
         JScrollPane pane = new JScrollPane(table);
 
-        pane.setPreferredSize(new Dimension(750, 300));
+        pane.setPreferredSize(new Dimension(950, 350));
 
         JPanel tablePanel = new JPanel();
 
@@ -157,9 +117,19 @@ public class Main extends JFrame implements ActionListener {
 
         String name = nameField.getText();
 
-        int marks = Integer.parseInt(marksField.getText());
+        int sub1 = Integer.parseInt(sub1Field.getText());
 
-        Student s = new Student(name, marks, model);
+        int sub2 = Integer.parseInt(sub2Field.getText());
+
+        int sub3 = Integer.parseInt(sub3Field.getText());
+
+        Student s = new Student(
+                name,
+                sub1,
+                sub2,
+                sub3,
+                model
+        );
 
         s.conductExam();
 
@@ -169,7 +139,11 @@ public class Main extends JFrame implements ActionListener {
 
         nameField.setText("");
 
-        marksField.setText("");
+        sub1Field.setText("");
+
+        sub2Field.setText("");
+
+        sub3Field.setText("");
     }
 
     public static void main(String[] args) {

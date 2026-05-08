@@ -1,8 +1,6 @@
-// Student.java
-
 import javax.swing.table.DefaultTableModel;
 
-class Student implements Exam {
+public class Student implements Exam {
 
     String name;
 

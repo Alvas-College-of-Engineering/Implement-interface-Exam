@@ -1,5 +1,3 @@
-// Exam.java
-
 interface Exam {
 
     void conductExam();
